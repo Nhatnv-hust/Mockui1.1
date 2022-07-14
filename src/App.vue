@@ -1,0 +1,33 @@
+<template>
+  <div id="app">
+    <Localpage />
+    
+  </div>
+</template>
+
+<script>
+import Localpage from "./components/Localpage.vue";
+
+export default {
+  name: "App",
+  components: {
+    Localpage,
+  },
+}
+</script>
+
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Gulzar&family=Mingzat&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+}
+#app{
+ width: 100vw;
+}
+
+</style>
