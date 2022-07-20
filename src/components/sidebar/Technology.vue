@@ -264,7 +264,7 @@ export default {
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Gulzar&family=Mingzat&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
-.tec-page{
+.tec-page {
   border: 1px solid #f0f0f0;
   position: relative;
   left: 260px;
@@ -420,6 +420,7 @@ export default {
   width: 100%;
   background-color: #f0f0f0;
   border: none;
+  outline: none;
 }
 .input-form button {
   width: 61px;
@@ -433,5 +434,4 @@ export default {
   font-weight: 700;
   cursor: pointer;
 }
-
 </style>

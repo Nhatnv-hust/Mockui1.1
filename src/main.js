@@ -2,7 +2,8 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router/index";
-
+import mitt from 'mitt';
+const emitter = mitt();
 // import {library} from '@fortawesome/fontawesome-svg-core'
 // import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
@@ -15,8 +16,11 @@ import router from "./router/index";
 //     .component(('font-awesome-icon', FontAwesomeIcon))
 
 // Vue.component('font-awesome-icon', FontAwesomeIcon)
-
-createApp(App)
-  .use(router)
-  .mount("#app")
+const app = createApp(App)
+app.config.globalProperties.emitter = emitter;
+app.use(router);
+app.mount('#app')
+// createApp(App)
+//   .use(router)
+//   .mount("#app")
 

@@ -122,14 +122,6 @@ export default {
 .nav__menu-item {
   height: 32px;
 }
-.menu-item:hover{
-  background-color: #66CDAA;
-  border-radius: 12px;
-  padding: 0px 4px;
-  color: #ffffff;
-   opacity: 0.5;
-
-}
 .nav__menu-item-icon {
   display: flex;
   align-items: center;
@@ -190,6 +182,7 @@ export default {
   font-weight: 400;
   font-size: 14px;
   line-height: 24px;
+  outline: none;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }

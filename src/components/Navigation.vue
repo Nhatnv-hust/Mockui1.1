@@ -112,10 +112,8 @@ export default {
 }
 .sidebar-post {
   display: flex;
-  /* border: 1px solid ; */
   justify-content: space-between;
   align-items: center;
-  /* border-radius: 25px; */
 }
 .sidebar-item:hover .sidebar-post {
   background-color: #007c7c;
@@ -137,7 +135,6 @@ a {
   color: #191919;
   text-decoration: none;
 }
-
 .sidebar-img {
   padding: 7px 0;
   margin: 0px 14px;
@@ -167,76 +164,4 @@ a {
   border-radius: 40px;
   color: #ffffff;
 }
-/* .sidebar {
-  width:calc(100% - 32px) ;
-  margin: auto;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-}
-.sidebar-post {
-  width: 100%;
-  height: 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 4px 16px;
-}
-.sidebar-post-host {
-  display: flex;
-  width: 100%;
-  justify-content: start;
-  align-items: center;
-  width: 228px;
-  height: 40px;
-  padding: 2px 0px;
-}
-.sidebar-post-host .sidebar-img {
-  padding-right: 16px;
-}
-.sidebar-post-host .sidebar-img img {
-  width: 24px;
-  height: 24px;
-  padding: 2px 4px;
-}
-.sidebar-title {
-  text-decoration: none;
-  font-style: 14px;
-  font-weight: 500;
-  line-height: 24px;
-}
-a {
-  color: #191919;
-  text-decoration: none;
-}
-.sidebar-infor {
-  width: 32px;
-  height: 18px;
-  border-radius: 40px;
-  background-color: #e72511;
-  color: #ffffff;
-  font-style: 12px;
-  font-weight: 600;
-  line-height: 18px;
-  text-align: center;
-  cursor: pointer;
-}
-.side-sub {
-  width: 260px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 4px 16px;
-}
-.sidebar-border {
-  border-bottom: 1px solid #f0f0f0;
-}
-.activeClass {
-  background-color: #007c7c;
-  border-radius: 40px;
-  color: #ffffff;
-}
-.hr {
-  padding: 0px;
-  margin: 12px;
-} */
 </style>
