@@ -22,6 +22,14 @@ export default {
       max: 1000,
     };
   },
+   watch: {
+    contentpost: {
+      handler: function () {
+        this.$emit('contentPost', this.contentpost)
+      },
+      immediate: true,
+    },
+  },
   methods: {
     onKeyDown(evt) {
       if (this.contentpost.length > this.max) {
@@ -64,9 +72,7 @@ export default {
   width: 100%;
   border: 1px solid #d5d5d5;
   border-radius: 4px;
-  padding: 8px;
-  max-height: 170px;
-  overflow-y: scroll;
+  padding: 8px 0px 8px 8px;
 }
 .contentpost-main textarea {
   width: 100%;
@@ -77,6 +83,9 @@ export default {
   resize: none;
   font-size: 14px;
   font-weight: 400;
+   overflow-y: scroll;
+    overflow: -moz-scrollbars-none;
+    -ms-overflow-style: none;
 }
 ::-webkit-scrollbar {
   width: 8px;

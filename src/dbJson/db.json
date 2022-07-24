@@ -9,3 +9,12 @@
     }
   ]
 }
+
+canPushData(){
+  if(this.dataForm.hasTag.length ==0  ||
+  this.dataForm.contentPost == '' ||
+  this.dataForm.imgData.length ==0 ||){
+
+    this.isPushData == true
+    
+  }

@@ -68,6 +68,14 @@ export default {
       addHadtags: [],
     };
   },
+   watch: {
+    addHadtags: {
+      handler: function () {
+        this.$emit('pushHadtags', this.addHadtags)
+      },
+      deep: true,
+    },
+  },
   methods: {
     addActive() {
       if (this.Hastags != "") {
@@ -84,7 +92,7 @@ export default {
     },
     addSuggest(hastag) {
       this.addHadtags.push(hastag);
-      console.log(this.addHadtags);
+      // console.log(this.addHadtags);
     },
   },
 };

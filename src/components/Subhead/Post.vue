@@ -1,5 +1,5 @@
 <template>
-  <div class="Post-page" @submit="onsubmit">
+  <div class="Post-page">
     <div class="post-page-main">
       <div class="post-onpage">
         <div class="post-author-infor">
@@ -29,7 +29,6 @@
                   v-model="search"
                 />
               </div>
-
               <img
                 src="../../assets/times.png"
                 alt="times"
@@ -57,13 +56,22 @@
             </div>
           </div>
           <!-- content-input -->
-          <Contentposts />
+          <Contentposts @contentPost="contentPost" />
         </div>
       </div>
       <div class="post-br"></div>
-      <Uploadimg/>
-      <Hastag />
-      <Inportimg/>
+      <Uploadimg @imgChanged="imgChanged" />
+      <Hastag @pushHadtags="pushHadtags" />
+      <div class="post-btn">
+        <button class="btn btn-Discard" @click="discardData">Discard</button>
+        <button
+          class="btn btn-Post"
+          :class="[canPush ? 'activePush' : '']"
+          @click="pushData"
+        >
+          Post
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -76,7 +84,13 @@ export default {
   name: "Post-page",
   data() {
     return {
-      dataForm: "",
+      dataForm: {
+        chanelName: "",
+        contentPost: "",
+        imgData: [],
+        hasTag: [],
+      },
+      isPushData: false,
       isshow: false,
       active: false,
       author: {
@@ -144,12 +158,9 @@ export default {
   },
   mounted() {
     this.select;
-    this.emitter.on('load-post',this.processLoadPost)
+    this.emitter.on("load-post", this.processLoadPost);
   },
   methods: {
-    processLoadPost (data){
-      console.log(data)
-    },
     showchanel() {
       this.isshow = !this.isshow;
       this.active = !this.active;
@@ -160,18 +171,55 @@ export default {
           item.check = !item.check;
           item.isActiveDrop = !item.isActiveDrop;
           this.selectedItem = item;
-          console.log(this.selectedItem);
+          this.isshow = !this.isshow;
+           this.active = !this.active;
+          // console.log(this.selectedItem);
         } else {
           item.check = false;
           item.isActiveDrop = false;
         }
       });
     },
+    focussSelect() {
+      this.isshow = false;
+    },
     delsearch() {
       return (this.search = "");
     },
+    pushData() {
+      this.dataForm.chanelName = this.selectedItem.selected;
+      console.log(this.dataForm);
+    },
+    pushHadtags(e) {
+      this.dataForm.hasTag = e;
+      console.log(e);
+    },
+    contentPost(e) {
+      this.dataForm.contentPost = e;
+    },
+    imgChanged(e) {
+      this.dataForm.imgData = e;
+    },
+    discardData(){
+       this.dataForm.chanelName=''
+       this.dataForm.contentPost=''
+       this.dataForm.imgData=[]
+       this.dataForm.hasTag=[]
+       console.log(this.dataForm)
+    }
   },
   computed: {
+    canPush() {
+      if (
+        this.dataForm.contentPost.length > 0 ||
+        this.dataForm.imgData.length > 0 ||
+        this.dataForm.hasTag.length > 0
+      )
+        return true;
+      else {
+        return false;
+      }
+    },
     filteredList() {
       return this.selections.filter((select) => {
         return select.selected
@@ -229,11 +277,14 @@ export default {
   border: 1px solid #d5d5d5;
   border-radius: 4px;
 }
-.post-dropdown.active {
+.post-dropdown.active  {
   border: 2px solid #007c7c;
 }
 .post-dropdown.active span {
   color: #191919;
+}
+.post-dropdown.is-invalid {
+  border-color: #dc3545;
 }
 .post-header input {
   width: 100%;
@@ -241,9 +292,11 @@ export default {
 /* dropdown--------------------------------- */
 .dropdown {
   border-radius: 8px;
-  z-index: 1;
-  position: relative;
+  width: 100%;
+  z-index: 100;
+  position: absolute;
   border: 1px solid #d5d5d5;
+  background: #fff;
   box-shadow: 0 0px 10px rgba(0, 0, 0, 0.1);
 }
 .dropdown-mainheader {
@@ -288,15 +341,13 @@ export default {
   align-items: center;
   padding: 4px 4px 4px 16px;
 }
-/* .dorp-down-select:hover {
+.dorp-down-select:hover {
   background-color: #e0efef;
   color: #007c7c;
-} */
+}
 .dorp-down-select div {
   height: 32px;
   padding: 4px 0px;
-  font-size: 14px;
-  font-weight: 400;
   /* border: 1px solid red; */
 }
 .dorp-down-select button {
@@ -306,8 +357,7 @@ export default {
   background-color: #fff;
 }
 .activedrop {
-  background-color: #007c7c;
-  color: red;
+  color: #007c7c;
 }
 .dropdown-modal {
   display: flex;
@@ -328,6 +378,34 @@ export default {
 }
 /* br ngăn trang*/
 .post-br {
-  border-bottom:1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+}
+.post-btn {
+  background-color: #fff;
+  padding-right: 16px;
+  height: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 8px;
+}
+.btn {
+  border-radius: 20px;
+  padding: 12px 24px;
+}
+.btn-Discard {
+  background-color: #e5e5e5;
+}
+.btn-Post {
+  background-color: #007c7c;
+  opacity: 0.4;
+  color: #fff;
+  font-weight: 500;
+  font-size: 14px;
+}
+.activePush {
+  background-color: #007c7c;
+  opacity: 1;
 }
 </style>
