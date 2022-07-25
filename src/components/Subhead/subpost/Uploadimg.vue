@@ -16,8 +16,12 @@
           />
         </div>
         <div class="sub-upload-modal-btn" v-if="active == value.id">
-          <button class="sub-btn-delete" @click="handleDelete(value)">
-            <img src="../../../assets/times.png" alt="" />
+          <button class="sub-btn-delete">
+            <img
+              src="../../../assets/times.png"
+              alt=""
+              @click="handleDelete(value)"
+            />
             <span class="tooltipdel">Remove</span>
           </button>
           <div class="sub-btn-edit">
@@ -159,7 +163,7 @@ export default {
   display: flex;
 }
 .uploading-img label {
-  margin-right: 16px;
+  margin-right: 12px;
 }
 .frame-img {
   width: 105px;
@@ -175,10 +179,9 @@ export default {
   position: relative;
   display: inline-block;
 }
-.frame-img-fix:hover  {
+.frame-img-fix:hover {
   border: 1px solid #007c7c;
   color: #e0efef;
-  
 }
 .frame-img-fix:hover .tooltiptext {
   visibility: visible;

@@ -61,7 +61,7 @@
             v-for="option in inputs[2].options"
             :key="option.name"
             class="option-item"
-            @click="selectedMulti(option.name)"
+            @click="selected(option.name)"
           >
             {{ option.name }}
           </div>
@@ -74,24 +74,24 @@
         <h4>
           AHRQ Surveys on Patient Safety Culture™ (SOPS™) Medical Office Survey
         </h4>
-        <div
-          class="select-box1"
-          @click="toggleDropdownMuti"
-        >
-          <p>
-            {{
-              inputs[3].value ? inputs[3].value : inputs[3].placeholder
-            }}
-          </p>
-          <img src="../../assets/caret-down.png" />
+        <div class="select-box1" @click="toggleDropdownMuti">
+          <div class="select-box1-multi">
+            <span v-if="!inputs[3].value.length">{{
+              inputs[3].placeholder
+            }}</span>
+            <span v-for="add in inputs[3].value" :key="add.id">{{ add }} ,  </span>
+            <!-- <span v-else>-- Select option --</span> -->
+          </div>
+          <img src="../../assets/caret-down.png" alt="" />
         </div>
         <div class="select-box option-container" v-if="isShowDropdownMuti">
           <div v-for="option in inputs[3].options" :key="option.id">
-            <label class="option container">
+            <label class="optionMulti container">
               <input
                 type="checkbox"
                 :value="option.name"
                 v-model="inputs[3].value"
+                 @click="selectedMulti(option.name)"
               />
               <span class="checkmark"></span>
               {{ option.name }}
@@ -113,18 +113,24 @@
       <div class="user-container">
         <h4>Mobile app feedback</h4>
         <textarea
+          type="text"
           class="text-area-input"
           placeholder="What are you thinking?"
           v-model="inputs[5].value"
-          @input="inputs[5].countCharacter()"
+          @keydown="onKeyDown"
         ></textarea>
-        <p class="character-amount">{{ inputs[4].characterAmount }}/1000</p>
+        <p class="character-amount">{{ inputs[5].totalChar }}/1000</p>
       </div>
-      <div class="user-container">
-        <button class="button__main" @click="submit">Submit</button>
-        <button class="button__discard">Discard</button>
+      <div class="btn__main">
+        <div class="user-container">
+          <button class="button__main" @click="submit">Submit</button>
+          <button class="button__discard">Discard</button>
+        </div>
+        <div class="user-container">
+          <button class="button__clear">Clear all</button>
+        </div>
       </div>
-    </div>
+    </div> 
   </div>
 </template>
 
@@ -159,6 +165,16 @@ export default {
               id: "training3",
               name: "Training3",
               value: "dine in 3",
+            },
+            {
+              id: "training4",
+              name: "Take out",
+              value: "Take out",
+            },
+            {
+              id: "training5",
+              name: "Dispatch",
+              value: "Dispatch",
             },
           ],
           validate() {
@@ -255,29 +271,30 @@ export default {
             {
               id: 1,
               name: "Survey 1",
-              check:false
+              check: false,
             },
             {
               id: 2,
               name: "Survey 2",
-              check:false
+              check: false,
             },
             {
               id: 3,
               name: "Survey 3",
-              check:false
+              check: false,
             },
           ],
           validate() {
-            if (!this.value.length >0) {
+            if (this.value.length==0) {
               this.showError = true;
               this.messageError = "please choose option";
               return;
-            }
-            {
+            }else if (this.value.length>0) {
+
               this.showError = false;
               this.messageError = "";
             }
+            
           },
           showError: false,
           messageError: "",
@@ -289,17 +306,15 @@ export default {
         },
         {
           id: 6,
-          characterTotal: 1000,
-          characterAmount: 1000,
+          totalChar: 0,
+          max: 1000,
           value: "",
           validate() {},
-          countCharacter() {
-            this.characterAmount = this.characterTotal - this.value.length;
-          },
         },
       ],
     };
   },
+
   computed: {
     selectableInput() {
       return this.inputs.filter(
@@ -319,14 +334,30 @@ export default {
       this.inputs[2].value = e;
       this.inputs[2].validate();
     },
+    selectedMulti(){
+      this.inputs[3].validate();
+    },
     toggleDropdownMuti() {
       this.isShowDropdownMuti = !this.isShowDropdownMuti;
+    },
+    conditionAdd() {
+      //  this.inputs[3].value.length >0
+      console.log(this.input[3].length);
+    },
+    onKeyDown(evt) {
+      if (this.inputs[5].value.length > this.inputs[5].max) {
+        if (evt.keyCode >= 48 && evt.keyCode <= 90) {
+          evt.preventDefault();
+          return;
+        }
+      } else {
+        this.inputs[5].totalChar = this.inputs[5].value.length;
+      }
     },
     submit() {
       this.inputs.forEach((input) => {
         input.validate();
       });
-      console.log(this.inputs[3].value.name)
     },
   },
 };
@@ -398,18 +429,11 @@ p {
     cursor: pointer;
   }
 }
-.select-box1 {
-  border: 1px solid #e5e5e5;
-  border-radius: 4px;
-  padding: 8px 8px 8px 12px;
-  &:hover {
-    cursor: pointer;
-  }
-}
-.select-box1 img {
+
+/* .select-box1 img {
   padding: 5px 8px;
   object-fit: contain;
-}
+} */
 .option-container {
   display: flex;
   flex-direction: column;
@@ -473,6 +497,19 @@ p {
   margin-left: 8px;
   outline: none;
 }
+.button__clear {
+  padding: 8px 24px;
+  border: none;
+  background: #e5e5e5;
+  border-radius: 20px;
+  color: #000;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 24px;
+  cursor: pointer;
+  margin-left: 8px;
+  outline: none;
+}
 input,
 textarea,
 .select-box {
@@ -488,5 +525,28 @@ input {
   display: block;
   line-height: 10px;
   padding: 8px 0px;
+}
+.optionMulti {
+  display: flex;
+  align-items: center;
+  line-height: 10px;
+}
+.select-box1 {
+  align-items: center;
+  height: 40px;
+  border: 1px solid #d5d5d5;
+  border-radius: 4px;
+  padding: 8px 8px 8px 12px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.select-box1-multi {
+  justify-content: start;
+}
+.btn__main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 </style>

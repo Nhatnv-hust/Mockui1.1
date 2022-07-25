@@ -41,25 +41,7 @@ export default {
         this.totalChar = this.contentpost.length;
       }
     },
-    // countChar(e) {
-    //     let len = this.contentpost.length;
-    //     this.totalChar = len
-    //     // if(this.totalChar === 1000)
-
-    //     // console.log(this.contentpost);
-
-    // }
   },
-  //   computed: {
-  //     internalValue: {
-  //       get() {
-  //         return this.contentpost;
-  //       },
-  //       set(v) {
-  //         this.$emit("input", v);
-  //       },
-  //     },
-  //   },
 };
 </script >
 

@@ -18,6 +18,7 @@
             <!-- <input type="Text" placeholder="-- Please Select --" readonly /> -->
             <img src="../../assets/caret-down.png" alt="" />
           </div>
+          <p class="error">{{ this.messageError }}</p>
           <!-- <Dropdown v-if="isshow" /> -->
           <div class="dropdown" v-if="isshow">
             <div class="dropdown-mainheader">
@@ -172,7 +173,8 @@ export default {
           item.isActiveDrop = !item.isActiveDrop;
           this.selectedItem = item;
           this.isshow = !this.isshow;
-           this.active = !this.active;
+          this.active = !this.active;
+        
           // console.log(this.selectedItem);
         } else {
           item.check = false;
@@ -200,13 +202,13 @@ export default {
     imgChanged(e) {
       this.dataForm.imgData = e;
     },
-    discardData(){
-       this.dataForm.chanelName=''
-       this.dataForm.contentPost=''
-       this.dataForm.imgData=[]
-       this.dataForm.hasTag=[]
-       console.log(this.dataForm)
-    }
+    discardData() {
+      this.dataForm.chanelName = "";
+      this.dataForm.contentPost = "";
+      this.dataForm.imgData = [];
+      this.dataForm.hasTag = [];
+      console.log(this.dataForm);
+    },
   },
   computed: {
     canPush() {
@@ -277,7 +279,7 @@ export default {
   border: 1px solid #d5d5d5;
   border-radius: 4px;
 }
-.post-dropdown.active  {
+.post-dropdown.active {
   border: 2px solid #007c7c;
 }
 .post-dropdown.active span {
