@@ -68,10 +68,10 @@ export default {
       addHadtags: [],
     };
   },
-   watch: {
+  watch: {
     addHadtags: {
       handler: function () {
-        this.$emit('pushHadtags', this.addHadtags)
+        this.$emit("pushHadtags", this.addHadtags);
       },
       deep: true,
     },
@@ -202,5 +202,10 @@ button.addActive {
   padding: 4px 16px;
   color: white;
   cursor: pointer;
+}
+@media screen and (max-width: 620px){
+ .hastag-post{
+    width: 100%;
+  }
 }
 </style>

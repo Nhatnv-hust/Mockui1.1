@@ -174,7 +174,7 @@ export default {
           this.selectedItem = item;
           this.isshow = !this.isshow;
           this.active = !this.active;
-        
+
           // console.log(this.selectedItem);
         } else {
           item.check = false;
@@ -243,7 +243,7 @@ export default {
 .post-onpage {
   background-color: #fff;
   padding: 16px;
-  width: 620px;
+  width: 100%;
 }
 .post-author-infor {
   display: flex;
@@ -409,5 +409,20 @@ export default {
 .activePush {
   background-color: #007c7c;
   opacity: 1;
+}
+@media screen and (max-width: 1024px) {
+  .tec-page {
+    left: 0;
+    right: 0;
+  }
+}
+@media only screen and (max-width: 620px) {
+  .post-onpage {
+    width: 100%;
+
+  }
+  .post-author-infor{
+    width: 100%;
+  }
 }
 </style>

@@ -6,11 +6,9 @@
 
 <script>
 export default {
-    name:"Music-page-vue"
-
-}
+  name: "Music-page-vue",
+};
 </script>
 
 <style>
-
 </style>

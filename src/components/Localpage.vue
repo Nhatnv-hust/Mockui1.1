@@ -2,8 +2,10 @@
   <div class="container-main">
     <Header />
     <div class="container-view">
-      <Navigation />
-      <router-view class="content-view"/>
+      <Navigation class="navigation-main" />
+      <div>
+        <router-view class="content-view" />
+      </div>
     </div>
   </div>
 </template>
@@ -22,20 +24,30 @@ export default {
 };
 </script>
 <style>
-.container-main{
+.container-main {
   width: 100vw;
-  margin:auto;
+  margin: auto;
+
 }
-.content-view{
-  width: calc(100vw - 260px);
+.content-view {
   background-color: #f8f8f8;
   display: flex;
   flex-direction: column;
   align-items: center;
-  left: 260px; 
+  left: 200px;
   top: 60px;
   position: relative;
-
 }
+.navigation-main{
 
+   background-color: #f0f0f0;
+}
+/* reponsive ipag */
+@media screen and (max-width: 1024px) {
+ .content-view {
+  width: 100%;
+  left: 0;
+ top: 60px;
+ }
+}
 </style>

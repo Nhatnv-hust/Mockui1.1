@@ -6,11 +6,9 @@
 
 <script>
 export default {
-    name:'News-page'
-
-}
+  name: "News-page",
+};
 </script>
 
 <style>
-
 </style>

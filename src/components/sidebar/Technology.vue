@@ -31,7 +31,7 @@
             </div>
           </div>
         </div>
-        <div class="img">
+        <div class="imgMain">
           <img :src="post.src" alt="" />
         </div>
         <Action />
@@ -267,8 +267,9 @@ export default {
 .tec-page {
   border: 1px solid #f0f0f0;
   position: relative;
-  left: 260px;
+  left: 200px;
   padding-top: 16px;
+  width: 100%;
 }
 .tec-content {
   border: 1px solid #d5d5d5;
@@ -375,7 +376,7 @@ export default {
   padding: 0px 4px;
 }
 .document-name {
-  width: 438px;
+  /* width: 438px; */
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;
@@ -395,7 +396,7 @@ export default {
 }
 /* input */
 .input-ui {
-  width: 620px;
+  width: 100%;
   height: 56px;
   padding: 0px 16px;
   background-color: #fff;
@@ -433,5 +434,25 @@ export default {
   line-height: 24px;
   font-weight: 700;
   cursor: pointer;
+}
+@media screen and (max-width: 1024px) {
+  .tec-page{
+    left: 0;
+    right: 0;
+  }
+}
+@media only screen and (max-width: 620px) {
+   .tec-page{
+    width: 100%;
+  }
+  .tec-container{
+     width: 100%;
+  }
+  .tec-content .imgMain img {
+    width: 100%;
+}
+.hastag {
+  white-space: normal;
+}
 }
 </style>

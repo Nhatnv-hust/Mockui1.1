@@ -6,7 +6,7 @@
     </div>
     <div class="sub-upload">{{ this.sub }}</div>
     <div class="uploading-img">
-      <label v-for="(value, index) in dataimg" :key="index">
+      <main v-for="(value, index) in dataimg" :key="index">
         <div :class="{ activeClass: active == value.id }">
           <img
             class="frame-img imgactive"
@@ -38,7 +38,7 @@
           <span class="tooltipfullname">{{ value.name }}</span>
         </div>
         <!--  -->
-      </label>
+      </main>
       <label class="frame-img-fix" v-if="dataimg.length < 5" for="imgInp">
         <div>
           <img src="../../../assets/plus.png" alt="" />
@@ -154,15 +154,15 @@ export default {
 }
 
 .sub-upload {
-  height: 20px;
   margin-bottom: 6px;
   font-weight: 400;
   font-size: 13px;
 }
 .uploading-img {
   display: flex;
+  flex-wrap: wrap;
 }
-.uploading-img label {
+.uploading-img main {
   margin-right: 12px;
 }
 .frame-img {
@@ -413,5 +413,13 @@ export default {
 .activeClass {
   border: 1px solid #007c7c;
   border-radius: 8px;
+}
+@media screen and (max-width: 620px){
+  .uploadimg{
+    width: 100%;
+  }
+  .frame-img-fix .tooltiptext {
+    width: 100%;
+  }
 }
 </style>

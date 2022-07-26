@@ -164,4 +164,11 @@ a {
   border-radius: 40px;
   color: #ffffff;
 }
+/* reponsive ipag */
+@media screen and (max-width: 1024px) {
+  .navigation {
+     display: none;
+     background-color: #f0f0f0;
+  }
+}
 </style>

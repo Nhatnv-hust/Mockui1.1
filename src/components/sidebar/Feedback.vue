@@ -6,11 +6,9 @@
 
 <script>
 export default {
-    name:'Feedback-page',
-
-}
+  name: "Feedback-page",
+};
 </script>
 
 <style>
-
 </style>

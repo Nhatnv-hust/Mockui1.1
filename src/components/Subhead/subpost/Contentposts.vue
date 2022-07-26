@@ -22,10 +22,10 @@ export default {
       max: 1000,
     };
   },
-   watch: {
+  watch: {
     contentpost: {
       handler: function () {
-        this.$emit('contentPost', this.contentpost)
+        this.$emit("contentPost", this.contentpost);
       },
       immediate: true,
     },
@@ -65,9 +65,9 @@ export default {
   resize: none;
   font-size: 14px;
   font-weight: 400;
-   overflow-y: scroll;
-    overflow: -moz-scrollbars-none;
-    -ms-overflow-style: none;
+  overflow-y: scroll;
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
 }
 ::-webkit-scrollbar {
   width: 8px;

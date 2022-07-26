@@ -34,7 +34,7 @@ export default {
 
 <style scoped>
 .action-ui {
-  width:100%;
+  width: 100%;
   height: 56px;
   border-top: 1px solid #e5e5e5;
   border-bottom: 1px solid #e5e5e5;

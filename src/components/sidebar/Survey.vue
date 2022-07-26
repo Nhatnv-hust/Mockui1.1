@@ -79,7 +79,9 @@
             <span v-if="!inputs[3].value.length">{{
               inputs[3].placeholder
             }}</span>
-            <span v-for="add in inputs[3].value" :key="add.id">{{ add }} ,  </span>
+            <span v-for="add in inputs[3].value" :key="add.id"
+              >{{ add }} ,
+            </span>
             <!-- <span v-else>-- Select option --</span> -->
           </div>
           <img src="../../assets/caret-down.png" alt="" />
@@ -91,7 +93,7 @@
                 type="checkbox"
                 :value="option.name"
                 v-model="inputs[3].value"
-                 @click="selectedMulti(option.name)"
+                @click="selectedMulti(option.name)"
               />
               <span class="checkmark"></span>
               {{ option.name }}
@@ -130,7 +132,7 @@
           <button class="button__clear">Clear all</button>
         </div>
       </div>
-    </div> 
+    </div>
   </div>
 </template>
 
@@ -285,16 +287,14 @@ export default {
             },
           ],
           validate() {
-            if (this.value.length==0) {
+            if (this.value.length == 0) {
               this.showError = true;
               this.messageError = "please choose option";
               return;
-            }else if (this.value.length>0) {
-
+            } else if (this.value.length > 0) {
               this.showError = false;
               this.messageError = "";
             }
-            
           },
           showError: false,
           messageError: "",
@@ -334,7 +334,7 @@ export default {
       this.inputs[2].value = e;
       this.inputs[2].validate();
     },
-    selectedMulti(){
+    selectedMulti() {
       this.inputs[3].validate();
     },
     toggleDropdownMuti() {
@@ -374,6 +374,7 @@ export default {
   justify-content: start;
   align-items: center;
   width: 620px;
+  left: 200px;
   height: 40px;
   margin: 24px 0px;
 }
@@ -388,6 +389,7 @@ export default {
   margin: 0px;
 }
 .blog-container {
+  left: 200px;
   background: #fff;
   border: 1px solid #d5d5d5;
   border-radius: 8px;
@@ -548,5 +550,15 @@ input {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+@media only screen and (max-width: 620px) {
+  .survey-container {
+    width: 100%;
+    height: 40px;
+    margin: 24px 0px;
+  }
+  .blog-container {
+    width: 94%;
+  }
 }
 </style>

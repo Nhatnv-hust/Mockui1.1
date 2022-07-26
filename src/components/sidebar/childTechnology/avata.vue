@@ -104,4 +104,14 @@ Which one is your favourite? 🤔`,
   height: 24px;
   color: #0e489b;
 }
+@media only screen and (max-width: 620px) {
+   .avatatech-container{
+    width: 100%;
+   }
+  }
+  .description{
+     white-space: normal;
+
+  }
+
 </style>

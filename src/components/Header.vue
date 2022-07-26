@@ -1,8 +1,10 @@
 <template>
   <div class="navbarss">
-    <i class="fa-solid fa-house-user"></i>
     <div class="navbar-container">
       <div class="navbar__logo">
+        <div class="toggle-sidebar">
+          <i class="fa-solid fa-bars"></i>
+        </div>
         <img src="../assets/logo.png" alt="" />
       </div>
       <div class="nav__menu-item" v-for="item in items" :key="item.id">
@@ -15,7 +17,7 @@
           >
             <i :class="item.icon"></i>
             <!-- <img :src="item.img" alt="" /> -->
-            <div>{{ item.name }}</div>
+            <div class="menu-item-item-name">{{ item.name }}</div>
           </router-link>
         </div>
       </div>
@@ -104,8 +106,7 @@ export default {
   padding: 10px 32px;
   background-color: #ffffff;
   border-bottom: 1px solid #e5e5e5;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 .navbar-container {
   display: flex;
@@ -115,7 +116,8 @@ export default {
   gap: 24px;
 }
 .navbar__logo {
-  width: 85.5px;
+ display: flex;
+ align-items: center;
   padding-top: 6.5px;
   padding-bottom: 9.5px;
 }
@@ -124,6 +126,7 @@ export default {
 }
 .nav__menu-item-icon {
   display: flex;
+  justify-content: start;
   align-items: center;
   text-decoration: none;
   color: #191919;
@@ -158,7 +161,6 @@ export default {
   display: inline-flex;
   align-items: center;
   border-radius: 54px;
-  width: 280px;
   height: 40px;
   background-color: #f0f0f0;
 }
@@ -183,8 +185,7 @@ export default {
   font-size: 14px;
   line-height: 24px;
   outline: none;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 .search-field-input input :focus {
   border: 1px solid #ccc;
@@ -223,8 +224,7 @@ export default {
   font-size: 14px;
   line-height: 24px;
   font-weight: 400;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 .nav__userId-infor-name p {
   margin-bottom: none;
@@ -240,4 +240,40 @@ export default {
   /* background-color: #007c7c; */
   color: #007c7c;
 }
+.toggle-sidebar {
+  display: none;
+  margin-right: 16px;
+}
+
+/* reponsive ipap*/
+@media screen and (max-width: 1024px) {
+  .nav__menu-item-icon {
+    display: flex;
+    align-items: center;
+    margin-top: 9px;
+  }
+  .menu-item-item-name {
+    display: none;
+    align-items: center;
+  }
+}
+@media screen and (max-width: 768px) {
+  .toggle-sidebar {
+    display: block;
+  }
+  .nav__menu-item-icon {
+    display: none;
+    align-items: center;
+  }
+  .nav__search,
+  .nav__userId-infor-caret,
+  .nav__userId-infor-name,
+  .nav__userId-notify-btn {
+    display: none;
+  }
+  .nav__userId{
+    width: 32px;
+  }
+}
+
 </style>
